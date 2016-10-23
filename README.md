@@ -1,17 +1,21 @@
-The project *grpc_stringsvc* implements GRPC with a GOLANG project.
+The project *grpc_stringsvc* implements a GRPC service in a GOLANG project.
 
 #Prerequisites
-`go get golang.org/x/net/context
-go get google.golang.org/grpc`
 
-As well as this packages to build your RPC library to share between server and client
-`
-go get -u github.com/golang/protobuf/protoc-gen-go
-go get -u github.com/golang/protobuf/proto
-`
+Install GRPC
+`go get google.golang.org/grpc`
+Install Protocol Buffers v3
+Download pre-compiled binaries https://github.com/google/protobuf/releases and update your PATH to include the path to the protoc binary file.
+
+Next install the protoc plugin for Go to build your RPC library that you will then share between server and client
+`go get -u github.com/golang/protobuf/protoc-gen-go`
+`go get -u github.com/golang/protobuf/proto`
+
+About prerequisite if something is missing check the official documentation http://www.grpc.io/docs/quickstart/go.html
+
 #Project
-This repository contains a string server and a client to consume it and it uses the GRPC protocol based on protobuf 3. Few methods are implemented as UpperCase and LowerCase. 
+This repository contains a string server, a client and a GRPC service. Communication is based on proto buffer v3. The GRPC service defines few methods as UpperCase and LowerCase. 
 
 #Generates .pb
-Everytime you wish to modify your contract, run the following command. If the change is breaking, you client and server will have to be updated
+Everytime you wish to modify your service, run the following command. Then compile your server and client to ensure they still are compliant with our GRPC service
 `protoc -I stringsvc_contract/ stringsvc_contract/stringsvc_contract.proto --go_out=plugins=grpc:stringsvc_contract`
