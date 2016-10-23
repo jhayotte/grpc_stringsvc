@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "stringsvc_contract";
+option java_outer_classname = "StringProto";
+
+package stringsvc_contract;
+
+// The string service definition.
+service Stringsvc {
+  // Returns string in uppercase
+  rpc UpperCase (StringRequest) returns (StringReply) {}
+
+  // Returns string in lowercase
+  rpc LowerCase (StringRequest) returns (StringReply) {}
+}
+
+// The request message containing the message not formatted.
+message StringRequest {
+  string messagenotformatted = 1;
+}
+
+// The response message containing the message formatted
+message StringReply {
+  string messageformatted = 1;
+}
